@@ -1,0 +1,343 @@
+/* ===== RESET & BODY ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'Poppins', Arial, sans-serif;
+    background-color: #d3ea9f;
+    color: #040232;
+}
+
+/* ===== HEADER ===== */
+.top-header {
+    background: linear-gradient(90deg, #2874f0, #1a5fd0);
+    padding: 15px 20px;
+    text-align: center;
+}
+
+.site-title {
+    color: #e00d0d;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* ===== NAV LINKS ===== */
+nav {
+    margin-top: 8px;
+}
+
+nav a {
+    color: #b9f981;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* ===== CAROUSEL ===== */
+.carousel {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    background: #ddd;
+}
+
+.slide {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+/* ===== FILTER BAR ===== */
+.filters {
+    background: #fff;
+    padding: 10px 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.filters input,
+.filters select,
+.filters button {
+    padding: 6px 10px;
+    font-size: 14px;
+}
+
+/* ===== SECTION TITLE ===== */
+.section-title {
+    font-size: 20px;
+    margin: 20px;
+    font-weight: 600;
+}
+
+/* ===== PRODUCT GRID ===== */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* ===== PRODUCT CARD ===== */
+.card {
+    background: #fff;
+    border-radius: 6px;
+    padding: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+    text-align: center;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+}
+
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.card h3 {
+    font-size: 16px;
+    margin: 10px 0 5px;
+}
+
+.card p {
+    font-size: 15px;
+    font-weight: bold;
+    color: #388e3c;
+}
+
+/* ===== BUTTON ===== */
+.card a {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 8px 14px;
+    background: #ff9f00;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.card a:hover {
+    background: #fb8c00;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background: #172337;
+    color: #ccc;
+    text-align: center;
+    padding: 15px;
+    margin-top: 30px;
+    font-size: 13px;
+}
+/* ===== TOP HEADER & HELP DROPDOWN ===== */
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background: linear-gradient(90deg, #2874f0, #1a5fd0);
+    padding: 10px 20px;
+}
+
+.header-left {
+    text-align: left;
+}
+
+.header-right {
+    text-align: right;
+}
+
+/* Website title */
+.site-title {
+    color: white;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Help dropdown */
+.help-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.help-btn {
+    background: #fff;
+    color: #2874f0;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.help-btn:hover {
+    background: #f1f3f6;
+}
+
+.help-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 35px;
+    background: #fff;
+    min-width: 220px;
+    padding: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    border-radius: 4px;
+    z-index: 100;
+}
+
+.help-content a {
+    color: #2874f0;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* Click to toggle dropdown */
+.help-dropdown.active .help-content {
+    display: block;
+}
+
+/* Arrow styling */
+.arrow {
+    font-size: 12px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .top-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .header-right {
+        margin-top: 10px;
+        width: 100%;
+        text-align: left;
+    }
+    nav {
+        margin-top: 10px;
+}
+}
+Bg/* ===== HELP DROPDOWN ===== */
+.help-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.help-btn {
+    background: #fff;
+    color: #2874f0;
+    border: none;
+    padding: 5px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.help-btn:hover {
+    background: #f1f3f6;
+}
+
+.help-content {
+    display: none; /* hidden by default */
+    position: absolute;
+    right: 0;
+    top: 35px;
+    background: #fff;
+    min-width: 220px;
+    padding: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    border-radius: 4px;
+    z-index: 100;
+}
+
+.help-content a {
+    color: #2874f0;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* Dropdown visible when active */
+.help-dropdown.active .help-content {
+    display: block;
+}
+
+/* Arrow styling */
+.arrow {
+    font-size: 12px;
+}
+
+/* Modal Styling */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 200;
+  padding-top: 60px; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0,0,0,0.8);
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 80%;
+}
+
+#caption {
+  text-align: center;
+  color: #fff;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.close {
+  position: absolute;
+  top: 25px;
+  right: 35px;
+  color: #fff;
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+color: #bbb;
+}

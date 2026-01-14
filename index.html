@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Style Whale & Outfit Bazaar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<!-- ===== TOP HEADER ===== -->
+<header class="top-header">
+    <div class="header-left">
+        <h1 class="site-title">STYLE WHALE & OUTFIT BAZAAR</h1>
+    </div>
+    <div class="header-right">
+        <!-- Help button with dropdown -->
+        <div class="help-dropdown">
+            <button class="help-btn">Help ▼</button>
+            <div class="help-content">
+                <p>Contact Us: <a href="mailto:shaileshkumarchauhan9340@gmail.com">shaileshkumarchauhan9340@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a> |
+        {% if session.get('customer') %}
+            Welcome, {{ session['customer'] }} |
+            <a href="{{ url_for('customer_logout') }}">Logout</a>
+        {% else %}
+            <a href="{{ url_for('customer_login') }}">Customer Login</a> |
+            <a href="{{ url_for('register') }}">Register</a>
+        {% endif %}
+        | <a href="{{ url_for('login') }}">Admin Login</a>
+    </nav>
+</header>
+
+<!-- ===== CAROUSEL ===== -->
+<div class="carousel">
+    <img class="slide active" src="{{ url_for('static', filename='images/banner1.jpg') }}">
+    <img class="slide" src="{{ url_for('static', filename='images/banner2.jpg') }}">
+    <img class="slide" src="{{ url_for('static', filename='images/banner3.jpg') }}">
+</div>
+
+<!-- ===== SEARCH & FILTERS ===== -->
+<section class="filters">
+    <form method="get" action="{{ url_for('home') }}">
+        <input type="text" name="search" placeholder="Search outfits..." value="{{ request.args.get('search','') }}">
+        <select name="category">
+            <option value="">All Categories</option>
+            <option value="boys" {% if request.args.get('category')=='boys' %}selected{% endif %}>Boys</option>
+            <option value="girls" {% if request.args.get('category')=='girls' %}selected{% endif %}>Girls</option>
+        </select>
+        <select name="price">
+            <option value="">Sort by Price</option>
+            <option value="low" {% if request.args.get('price')=='low' %}selected{% endif %}>Low to High</option>
+            <option value="high" {% if request.args.get('price')=='high' %}selected{% endif %}>High to Low</option>
+        </select>
+        <input type="submit" value="Apply">
+    </form>
+</section>
+
+<!-- ===== BOYS COLLECTION ===== -->
+<section class="category">
+    <h2>Boys Collection</h2>
+    <div class="products">
+        {% for outfit in outfits if outfit.category == 'boys' %}
+        <div class="card">
+            <div class="card">
+    <img src="{{ outfit.image }}" alt="{{ outfit.name }}" class="product-img" onclick="openModal('{{ outfit.image }}', '{{ outfit.name }}')">
+    <h3>{{ outfit.name }}</h3>
+    <p>₹ {{ outfit.price }}</p>
+    {% if session.get('customer') %}<button class="wishlist">❤</button>{% endif %}
+    <a href="{{ outfit.link }}" target="_blank">Buy Now</a>
+</div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- ===== GIRLS COLLECTION ===== -->
+<section class="category">
+    <h2>Girls Collection</h2>
+    <div class="products">
+        {% for outfit in outfits if outfit.category == 'girls' %}
+        <div class="card">
+    <img src="{{ outfit.image }}" alt="{{ outfit.name }}" class="product-img" onclick="openModal('{{ outfit.image }}', '{{ outfit.name }}')">
+    <h3>{{ outfit.name }}</h3>
+    <p>₹ {{ outfit.price }}</p>
+    {% if session.get('customer') %}<button class="wishlist">❤</button>{% endif %}
+    <a href="{{ outfit.link }}" target="_blank">Buy Now</a>
+</div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- ===== CAROUSEL SCRIPT ===== -->
+<script>
+let slides = document.querySelectorAll(".slide");
+let index = 0;
+
+setInterval(() => {
+    slides[index].classList.remove("active");
+    index = (index + 1) % slides.length;
+    slides[index].classList.add("active");
+}, 3000);
+</script>
+<!-- ===== CAROUSEL / PRODUCTS / FILTERS etc. sab tumhara purana code ===== -->
+
+<!-- ===== HELP BUTTON DROPDOWN SCRIPT ===== -->
+<script>
+const helpBtn = document.querySelector(".help-btn");
+const helpDropdown = document.querySelector(".help-dropdown");
+
+helpBtn.addEventListener("click", () => {
+    helpDropdown.classList.toggle("active");
+});
+
+// Click outside to close dropdown
+document.addEventListener("click", function(event) {
+    if (!helpDropdown.contains(event.target)) {
+        helpDropdown.classList.remove("active");
+    }
+});
+</script>
+
+<!-- Product Image Modal -->
+<div id="imgModal" class="modal">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <img class="modal-content" id="modalImg">
+  <div id="caption"></div>
+</div>
+<script>
+function openModal(imgSrc, name) {
+    document.getElementById("imgModal").style.display = "block";
+    document.getElementById("modalImg").src = imgSrc;
+    document.getElementById("caption").innerHTML = name;
+}
+
+function closeModal() {
+    document.getElementById("imgModal").style.display = "none";
+}
+</script>
+</body>
+</html>
